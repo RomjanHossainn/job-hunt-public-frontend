@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Register = () => {
     const navigateHome = useNavigate()
     const {createUser} = useContext(AuthContext)
@@ -180,13 +180,23 @@ const Register = () => {
                 </div>
               </div>
             </div>
-            <p className="py-5">{alertMessage ? alertMessage : ''}</p>
+            <p className="py-5">{alertMessage ? alertMessage : ""}</p>
             <div className="flex -mx-3">
               <div className="w-full px-3 mb-5">
                 <button className="block w-full  mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
                   REGISTER NOW
                 </button>
               </div>
+            </div>
+            <div className="text-grey-dark mt-6 text-center">
+              Already have an account?
+              <Link
+                to="/login"
+                className="no-underline text-[#4338CA] font-bold border-b border-blue text-blue"
+              >
+                Log in
+              </Link>
+              .
             </div>
           </div>
         </form>
