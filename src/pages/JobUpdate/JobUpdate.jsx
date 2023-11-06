@@ -1,63 +1,16 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
-import axios from "axios";
-import Swal from "sweetalert2";
-const AddJob = () => {
+
+const JobUpdate = () => {
     const {user} = useContext(AuthContext)
-    
-    const handleAddJob = (e) => {
-        e.preventDefault()
-        const form = e.target;
-        const min_salary = form.min_price.value;
-        const max_salary = form.max_price.value;
-        const job_title = form.job_title.value;
-        const location = form.location.value;
-        const jobType = form.jobType.value;
-        const category = form.category.value;
-        const dead_line = form.dead_line.value;
-        const email = form.email.value;
-        const description = form.description.value;
-
-
-        const addJob = {
-            min_salary,
-            max_salary,
-            job_title,
-            location,
-            jobType,
-            category,
-            dead_line,
-            email,
-            description
-        }
-
-        axios.post("http://localhost:5000/jobpost",addJob)
-        .then(result => {
-            if(result.data.insertedId){
-                const Toast = Swal.mixin({
-                  toast: true,
-                  position: "top-end",
-                  showConfirmButton: false,
-                  timer: 2000,
-                  timerProgressBar: true,
-                  didOpen: (toast) => {
-                    toast.addEventListener("mouseenter", Swal.stopTimer);
-                    toast.addEventListener("mouseleave", Swal.resumeTimer);
-                  },
-                });
-
-                Toast.fire({
-                  icon: "success",
-                  title: "Register Successfully",
-                });
-                form.reset();
-            }
-        })
+    const handleUpdate = e => {
         
-
     }
     return (
-      <form onSubmit={handleAddJob} className="w-full max-w-3xl mx-auto pt-12 md:pt-12 py-10">
+      <form
+        onSubmit={handleUpdate}
+        className="w-full max-w-3xl mx-auto pt-12 md:pt-12 py-10"
+      >
         <div>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="flex -mx-3">
@@ -240,4 +193,4 @@ const AddJob = () => {
     );
 };
 
-export default AddJob;
+export default JobUpdate;
