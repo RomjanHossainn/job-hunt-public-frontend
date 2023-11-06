@@ -6,6 +6,7 @@ import Login from "../pages/Login/Login";
 import Jobs from "../pages/Home/Jobs/Jobs";
 import AllJobs from "../pages/Home/Jobs/AllJobs";
 import JobDetails from "../pages/Home/Jobs/JobDetails";
+import AddJob from "../pages/AddJob/AddJob";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/jobs/:category/:id",
         element : <JobDetails></JobDetails>
+      },
+      {
+        path : '/addjobs',
+        element : <AddJob></AddJob>
       },
       {
         path: "/register",

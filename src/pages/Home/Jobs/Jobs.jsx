@@ -13,11 +13,6 @@ const Jobs = () => {
         .then(result => setJobs(result.data))
     },[category_name])
     
-    useEffect(() => {
-        setJobs(null)
-        axios.get(`http://localhost:5000/categoryesitem?name=${category_name}`)
-        .then(result => setJobs(result.data))
-    },[category_name])
 
     if(!jobs){
       return (
