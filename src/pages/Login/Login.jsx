@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
-
+    const navigateHome = useNavigate();
     const [alertMessage, setAlertMessage] = useState("");
     const {signInUser} = useContext(AuthContext)
     const handleLogin = (e) => {
@@ -22,10 +23,33 @@ const Login = () => {
 
         signInUser(email,password)
         .then(result => {
-            console.log(result.user)
+                if(result.user){
+                  console.log(result.user)
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener("mouseenter", Swal.stopTimer);
+                      toast.addEventListener("mouseleave", Swal.resumeTimer);
+                    },
+                  });
+
+                  Toast.fire({
+                    icon: "success",
+                    title: "Register Successfully",
+                  });
+                }
+                form.reset()
+                navigateHome('/')
         })
         .catch(erorr => {
-            console.log(erorr.message)
+            // console.log(erorr.message)
+            if(erorr.message){
+              return setAlertMessage('No matcing Your Information sorry')
+            }
         })
 
 

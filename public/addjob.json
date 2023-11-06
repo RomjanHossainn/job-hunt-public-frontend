@@ -1,0 +1,80 @@
+
+//  sgAdWhlq01ZDxcuF
+//  jobhunt-application
+
+
+[
+  {
+    "email": "example1@example.com",
+    "job_title": "senior web developer",
+    "dead_line": "2023-12-31",
+    "description": "We are looking for a talented web developer to join our team.",
+    "category": "web development",
+    "min_salary": 60000,
+    "max_salary": 90000
+  },
+  {
+    "email": "example2@example.com",
+    "job_title": "junior web developer",
+    "dead_line": "2023-11-30",
+    "description": "We are seeking an experienced junior web developer to lead our development efforts.",
+    "category": "web development",
+    "min_salary": 70000,
+    "max_salary": 100000
+  },
+  {
+    "email": "example3@example.com",
+    "job_title": "marketing manager",
+    "dead_line": "2024-01-15",
+    "description": "We are in need of a skilled accountant to manage our financial records.",
+    "category": "digital marketing",
+    "min_salary": 55000,
+    "max_salary": 80000
+  },
+  {
+    "email": "example4@example.com",
+    "job_title": "Senior Graphic Designer",
+    "dead_line": "2023-12-15",
+    "description": "We are looking for a creative graphic designer to join our design team.",
+    "category": "graphic desgin",
+    "min_salary": 50000,
+    "max_salary": 75000
+  },
+  {
+    "email": "example5@example.com",
+    "job_title": "junior graphic desginer",
+    "dead_line": "2023-11-15",
+    "description": "We are hiring a project manager to oversee and coordinate our projects.",
+    "category": "graphic desgin",
+    "min_salary": 70000,
+    "max_salary": 110000
+  },
+  {
+    "email": "example6@example.com",
+    "job_title": "senior marketer",
+    "dead_line": "2023-12-31",
+    "description": "We are looking for a dynamic sales representative to join our sales team.",
+    "category": "digital marketing",
+    "min_salary": 55000,
+    "max_salary": 80000
+  }
+]
+
+[
+  {
+    "id": 1,
+    "category_name": "All Jobs"
+  },
+  {
+    "id": 2,
+    "category_name": "digital marketing"
+  },
+  {
+    "id": 3,
+    "category_name": "graphic desgin"
+  },
+  {
+    "id": 4,
+    "category_name": "web development"
+  }
+]

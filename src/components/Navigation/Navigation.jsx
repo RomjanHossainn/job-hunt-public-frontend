@@ -5,7 +5,19 @@ import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 
 const Navigation = () => {
 
-    const {user} = useContext(AuthContext)
+
+
+    const {user,logOut} = useContext(AuthContext)
+
+    const handleLogout = () => {
+      logOut()
+      .then(() => {
+        // console.log('logout success')
+      })
+      .catch(erorr => {
+        // console.log(erorr)
+      })
+    }
 
     const navLinks = <>
         <li><NavLink className='text-lg' to="/home">Home</NavLink></li>
@@ -54,14 +66,18 @@ const Navigation = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src={user ? user.photoURL : ''} />
+                <img src={user ? user.photoURL : ""} />
               </div>
             </label>
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-                <h3 className=" text-lg text-center mb-3">Name :- {user?user.displayName : ''}</h3>
+              {
+                user?<h3 className=" text-lg text-center mb-3">
+                Name :- {user ? user.displayName : ""}
+              </h3>:''
+              }
               <li>
                 <a className="justify-between">
                   Profile
@@ -72,7 +88,11 @@ const Navigation = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                {user ? (
+                  <a onClick={handleLogout}>Logout</a>
+                ) : (
+                  <Link to="/login">Login</Link>
+                )}
               </li>
             </ul>
           </div>
