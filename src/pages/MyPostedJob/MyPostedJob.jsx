@@ -11,6 +11,13 @@ const MyPostedJob = () => {
         .then(result => setMyPostedJob(result.data))
         
     },[user])
+
+    const handleDelete = (_id) => {
+      axios.delete(`http://localhost:5000/jobdelete?id=${_id}`)
+      .then(result => {
+        console.log(result.data)
+      })
+    } 
     
     if(!mypostedjob){
         return (
@@ -78,7 +85,7 @@ const MyPostedJob = () => {
                       </Link>
                     </td>
                     <td className="px-6 py-4">
-                      <button className="bg-rose-500 text-white px-2 py-1 rounded-md">
+                      <button onClick={() => handleDelete(_id)} className="bg-rose-500 text-white px-2 py-1 rounded-md">
                         Delete
                       </button>
                     </td>

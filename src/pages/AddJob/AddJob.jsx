@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
 const AddJob = () => {
+    
     const {user} = useContext(AuthContext)
     
     const handleAddJob = (e) => {
