@@ -25,7 +25,7 @@ const Navigation = () => {
         <li><NavLink className='text-lg' to="/mypostedjobs">My Posted Jobs</NavLink></li>
         <li><NavLink className='text-lg' to="/mybids">My Bids</NavLink></li>
         <li><NavLink className='text-lg' to="/bidrequest">Bid Request</NavLink></li>
-        <li><NavLink className='text-lg' to="/login">Login</NavLink></li>
+        
     </>
     return (
       <div className="navbar bg-base-100">
@@ -63,7 +63,8 @@ const Navigation = () => {
           <div className="navbar-center hidden lg:flex me-8">
             <ul className="menu menu-horizontal px-1">{navLinks}</ul>
           </div>
-          <div className="dropdown dropdown-end">
+          {
+            user ? <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
                 <img src={user ? user.photoURL : ""} />
@@ -95,7 +96,8 @@ const Navigation = () => {
                 )}
               </li>
             </ul>
-          </div>
+          </div> : <Link to="/login" className="text-lg border px-3 rounded-md py-1">Login</Link>
+          }
         </div>
       </div>
     );

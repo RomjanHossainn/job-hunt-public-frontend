@@ -26,16 +26,17 @@ const MyPostedJob = () => {
         if (result.isConfirmed) {
           axios.delete(`http://localhost:5000/jobdelete?id=${_id}`)
           .then(result => {
-            if(result.data.deletedCount){
+            if(result.data.deletedCount > 0){
               const filterDelete = mypostedjob.filter(job => job._id !== _id)
               setMyPostedJob(filterDelete);
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your job has been deleted.",
+                icon: "success",
+              });
             }
           })
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your job has been deleted.",
-            icon: "success",
-          });
+          
         }
       });
       

@@ -60,7 +60,10 @@ const AddJob = () => {
 
     }
     return (
-      <form onSubmit={handleAddJob} className="w-full max-w-3xl mx-auto pt-12 md:pt-12 py-10">
+      <form
+        onSubmit={handleAddJob}
+        className="w-full max-w-3xl mx-auto pt-12 md:pt-12 py-10"
+      >
         <div>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="flex -mx-3">
@@ -156,18 +159,26 @@ const AddJob = () => {
             <div className="flex -mx-3">
               <div className="w-full px-3 mb-5">
                 <label for="" className="text-xs font-semibold px-1">
-                  Category
+                 Select Category
                 </label>
                 <div className="flex">
                   <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                     <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
                   </div>
-                  <input
+                  <select
+                    name="category"
+                    className="border w-full py-3 px-3 rounded-md"
+                  >
+                    <option value="graphic design">graphic design</option>
+                    <option value="web development">web development</option>
+                    <option value="digital marketing">digital marketing</option>
+                  </select>
+                  {/* <input
                     type="text"
                     name="category"
                     className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                     placeholder="category"
-                  />
+                  /> */}
                 </div>
               </div>
             </div>

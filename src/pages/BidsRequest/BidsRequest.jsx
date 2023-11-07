@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const BidsRequest = () => {
     const [mybidsreq, setMybidreq] = useState(null);
+    
     const { user } = useContext(AuthContext);
     
     useEffect(() => {
@@ -18,7 +20,47 @@ const BidsRequest = () => {
       );
     }
 
-    console.log(mybidsreq);
+    const handleAccepet = (_id) => {
+        
+        axios
+          .patch(`http://localhost:5000/bidstatus?id=${_id}`, {
+            newstatus: "accepted",
+          })
+          .then((result) => {
+            if (result.data.modifiedCount > 0) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Accepted Done",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              const allReq = mybidsreq.filter((item) => item._id !== _id);
+              const findReq = mybidsreq.find((item) => item._id === _id);
+
+              findReq.status = "accepted";
+
+              setMybidreq([findReq, ...allReq]);
+            }
+          });
+    }
+
+    const handleReject = (_id) => {
+        axios
+          .patch(`http://localhost:5000/bidstatus?id=${_id}`, {
+            newstatus: "Rejected",
+          })
+          .then((result) => {
+            if (result.data.modifiedCount > 0) {
+              const allReq = mybidsreq.filter((item) => item._id !== _id);
+              const findReq = mybidsreq.find((item) => item._id === _id);
+
+              findReq.status = "Rejected";
+
+              setMybidreq([findReq, ...allReq]);
+            }
+          });
+    }
 
     return (
       <div>
@@ -57,19 +99,25 @@ const BidsRequest = () => {
                   <th scope="col" className="px-6 py-3">
                     Email
                   </th>
+                  <th scope="col" className="px-6 py-3">
+                    bids Req
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {mybidsreq?.map((bids) => {
+                    
                   const {
                     price,
                     dead_line,
                     email,
-                    buyeremail,
+                    _id,
+                    
                     status,
                     job_title,
                     category,
                   } = bids || {};
+                  console.log(status);
                   return (
                     <tr
                       key={bids._id}
@@ -82,18 +130,35 @@ const BidsRequest = () => {
                         {category}
                       </th>
                       <td className="px-6 py-4">{job_title}</td>
-                      <td className="px-6 py-4">{price}</td>
+                      <td className="px-6 py-4">{price}TK</td>
                       <td className="px-6 py-4">{dead_line}</td>
                       <td className="px-6 py-4">{email}</td>
-                      <td className="px-6 py-4">{buyeremail}</td>
+
                       {status === "pending" ? (
-                        <td className="px-6 py-4">
-                          <button className="capitalize text-lg font-bold">
-                            {status}
+                        <td className="px-6 py-4 flex items-center gap-4">
+                          <button
+                            onClick={() => handleAccepet(_id)}
+                            className="capitalize bg-[#22C55E] rounded-md px-3 py-1 text-white text-md "
+                          >
+                            Accepet
+                          </button>
+                          <button
+                            onClick={() => handleReject(_id)}
+                            className=" bg-[#F43F5E] rounded-md px-3 py-1 text-white text-md"
+                          >
+                            Reject
                           </button>
                         </td>
                       ) : (
-                        <td>Comlete</td>
+                        <td
+                          className={`font-bold text-lg text-center border px-2 ${
+                            status === "Rejected"
+                              ? "text-[#ab2c42]"
+                              : "text-[#22C55E]"
+                          }`}
+                        >
+                          {status}
+                        </td>
                       )}
                     </tr>
                   );

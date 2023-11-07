@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
-
+import { VscCheckAll } from "react-icons/vsc";
+import { BsBookmarkX } from "react-icons/bs";
+import Swal from "sweetalert2";
 const MyBids = () => {
     const [mybids,setMybids] = useState(null);
     const {user} = useContext(AuthContext)
@@ -17,7 +19,35 @@ const MyBids = () => {
         );
     }
 
-    console.log(mybids)
+    const handleBidDelete = (_id) => {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axios
+              .delete(`http://localhost:5000/deletemybid?id=${_id}`)
+              .then((result) => {
+                if (result.data.deletedCount > 0) {
+                    Swal.fire({
+                      title: "Deleted!",
+                      text: "Your bid has been deleted.",
+                      icon: "success",
+                    });
+                  const filterBids = mybids.filter(bid => bid._id !== _id)
+                  setMybids(filterBids)
+                  
+                }
+              });
+            
+          }
+        });
+    }
     
 
     return (
@@ -59,6 +89,12 @@ const MyBids = () => {
                   <th scope="col" className="px-6 py-3">
                     Email
                   </th>
+                  <th scope="col" className="px-6 py-3">
+                    Status
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Clear
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -66,12 +102,12 @@ const MyBids = () => {
                   const {
                     price,
                     dead_line,
-                    buyeremail,
+                    _id,
                     email,
                     status,
                     job_title,
                     category,
-                    location
+                    
                   } = bids || {};
                   return (
                     <tr
@@ -85,15 +121,48 @@ const MyBids = () => {
                         {category}
                       </th>
                       <td className="px-6 py-4">{job_title}</td>
-                      <td className="px-6 py-4">{price}</td>
+                      <td className="px-6 py-4">{price}TK</td>
                       <td className="px-6 py-4">{dead_line}</td>
                       <td className="px-6 py-4">{email}</td>
-                      {
-                        status === 'pending' ? <td className="px-6 py-4">
-                        <button className="capitalize text-lg font-bold">{status}</button>
-                      </td>:<td>Comlete</td>
-                      
-                      }
+                      {status === "pending" ? (
+                        <td className="px-6 py-4">
+                          <button className="capitalize text-amber-700  font-bold">
+                            {status}
+                          </button>
+                        </td>
+                      ) : (
+                        <td>
+                          {status !== "Rejected" ? (
+                            <VscCheckAll
+                              className={`text-3xl font-bold ${
+                                status === "Rejected"
+                                  ? "text-[#F43F5E]"
+                                  : "text-[#00A35C]"
+                              } ms-3 `}
+                            ></VscCheckAll>
+                          ) : (
+                            <BsBookmarkX
+                              className={`text-2xl font-bold ${
+                                status === "Rejected"
+                                  ? "text-[#F43F5E]"
+                                  : "text-[#00A35C]"
+                              } ms-3 `}
+                            ></BsBookmarkX>
+                          )}
+                          <p
+                            className={`${
+                              status === "Rejected"
+                                ? "text-[#F43F5E]"
+                                : "text-[#00A35C]"
+                            }`}
+                          >
+                            Bid-{status}
+                          </p>
+                        </td>
+                      )}
+                      <td className="text-center">
+                        <button onClick={() => handleBidDelete(_id)} className="bg-[#F43F5E] text-white rounded-md px-3 py-1">delete</button>
+                      </td>
                     </tr>
                   );
                 })}
