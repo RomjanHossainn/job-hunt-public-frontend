@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 const AddJob = () => {
     
     const {user} = useContext(AuthContext)
-    
+    const navigate = useNavigate()
     const handleAddJob = (e) => {
         e.preventDefault()
         const form = e.target;
@@ -52,6 +53,7 @@ const AddJob = () => {
                   title: "Job Addeded Successfully",
                 });
                 form.reset();
+                navigate("/mypostedjobs");
             }
         })
         

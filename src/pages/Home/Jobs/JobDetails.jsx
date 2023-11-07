@@ -34,6 +34,32 @@ const JobDetails = () => {
         );
     }
 
+
+    const handleBidNow = (e) => {
+      e.prevenDefault();
+      const form = e.target;
+      const price = form.price.value;
+      const dead_line = form.deadline.value;
+      const buyeremail = form.buyeremail.value;
+      const email = form.email.value;
+
+      const bidsData = {
+        price,
+        dead_line,
+        buyeremail,
+        email,
+        status : 'pending',
+        job_title,
+        category,
+        location
+      }
+
+      
+      
+    }
+
+
+
     return (
       <div className="rounded-md w-full max-w-3xl mx-auto bg-white px-4 py-4 shadow-md transition transform duration-500 ">
         <div className="flex flex-col justify-start">
@@ -85,13 +111,13 @@ const JobDetails = () => {
           <div className="mt-5">
             <h1 className="text-lg font-bold">Bid Now</h1>
             <div className="w-full max-w-md  py-10 ">
-              <form>
+              <form onSubmit={handleBidNow}>
                 <div>
                   <div className="md:flex -mx-3"></div>
                   <div className="flex -mx-3">
                     <div className="w-full px-3 mb-5">
                       <label for="" className="text-xs font-semibold px-1">
-                        Price
+                        Salary
                       </label>
                       <div className="flex">
                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
@@ -117,7 +143,7 @@ const JobDetails = () => {
                         </div>
                         <input
                           type="date"
-                          name="Dead Line"
+                          name="deadline"
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="Dead Line"
                         />
@@ -156,11 +182,11 @@ const JobDetails = () => {
                         </div>
                         <input
                           type="email"
-                          name="email"
+                          name="buyeremail"
                           readOnly
                           defaultValue={email}
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                          placeholder="************"
+                          placeholder="Email"
                         />
                       </div>
                       
