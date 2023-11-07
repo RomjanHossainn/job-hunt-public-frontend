@@ -20,7 +20,7 @@ const Navigation = () => {
     }
 
     const navLinks = <>
-        <li><NavLink className='text-lg' to="/home">Home</NavLink></li>
+        <li><NavLink className='text-lg' to="/">Home</NavLink></li>
         <li><NavLink className='text-lg' to="/addjobs">Add Jobs</NavLink></li>
         <li><NavLink className='text-lg' to="/mypostedjobs">My Posted Jobs</NavLink></li>
         <li><NavLink className='text-lg' to="/mybids">My Bids</NavLink></li>
