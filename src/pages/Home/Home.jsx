@@ -3,6 +3,7 @@ import Navigation from "../../components/Navigation/Navigation";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import axios from "axios";
 import {NavLink, Outlet } from "react-router-dom";
+import Banner from "../../components/Banner/Banner";
 const Home = () => {
     const {loading} = useContext(AuthContext)
     const [categroyes,setCategoryes] = useState(null)
@@ -26,7 +27,7 @@ const Home = () => {
     return (
       <div>
         <Navigation></Navigation>
-        <h2>Home</h2>
+        <Banner></Banner>
         <div>
           <div className="flex flex-wrap items-center gap-5">
             {categroyes?.map((category) => (
