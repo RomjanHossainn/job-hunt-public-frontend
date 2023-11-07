@@ -24,7 +24,7 @@ const JobDetails = () => {
       category,
       max_salary,
       min_salary,
-      _id,
+
       email,
       description,
     } = job || {};
