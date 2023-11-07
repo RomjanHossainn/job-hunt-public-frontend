@@ -48,7 +48,7 @@ const AddJob = () => {
 
                 Toast.fire({
                   icon: "success",
-                  title: "Register Successfully",
+                  title: "Job Addeded Successfully",
                 });
                 form.reset();
             }
