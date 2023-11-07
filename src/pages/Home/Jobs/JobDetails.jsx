@@ -1,8 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 const JobDetails = () => {
+  
+    const navigateMybids = useNavigate()
+    
     const {id} = useParams();
     const [job,setJob] = useState(null)
     const {user} = useContext(AuthContext)
@@ -36,7 +40,7 @@ const JobDetails = () => {
 
 
     const handleBidNow = (e) => {
-      e.prevenDefault();
+      e.preventDefault();
       const form = e.target;
       const price = form.price.value;
       const dead_line = form.deadline.value;
@@ -54,7 +58,29 @@ const JobDetails = () => {
         location
       }
 
-      
+      axios.post("http://localhost:5000/postbidsjob",bidsData)
+      .then(result => {
+        if(result.data.insertedId){
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
+
+          Toast.fire({
+            icon: "success",
+            title: "Bid on the jobs",
+          });
+          form.reset();
+          navigateMybids('/mybids');
+        }
+      })
       
     }
 
