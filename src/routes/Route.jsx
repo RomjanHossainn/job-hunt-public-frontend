@@ -12,11 +12,13 @@ import JobUpdate from "../pages/JobUpdate/JobUpdate";
 import MyBids from "../pages/MyBids/MyBids";
 import BidsRequest from "../pages/BidsRequest/BidsRequest";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
+import ErorrPage from "../pages/ErorrPage/ErorrPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement : <ErorrPage></ErorrPage>,
     children: [
       {
         path: "/",

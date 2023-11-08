@@ -16,7 +16,7 @@ const Jobs = () => {
 
     if(!jobs){
       return (
-        <span className="loading loading-lg absolute top-1/2 left-1/2 loading-spinner text-gray-700"></span>
+        <span className="loading loading-lg relative top-20 mb-20 left-1/2 loading-spinner text-gray-700"></span>
         
       );
     }

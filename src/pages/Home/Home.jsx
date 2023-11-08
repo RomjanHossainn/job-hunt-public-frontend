@@ -6,6 +6,7 @@ import {NavLink, Outlet } from "react-router-dom";
 import Banner from "../../components/Banner/Banner";
 import Footer from "../../components/Footer/Footer";
 import Contact from "../../components/Contact/Contact";
+import Feature from "../../components/Feature/Feature";
 const Home = () => {
     const {loading} = useContext(AuthContext)
     const [categroyes,setCategoryes] = useState(null)
@@ -23,7 +24,7 @@ const Home = () => {
 
     if(loading && !categroyes){
         return (
-          <span className="loading loading-lg absolute top-1/2 left-1/2 loading-spinner text-gray-700"></span>
+          <span className="loading loading-lg absolute top-1/2  left-1/2 loading-spinner text-gray-700"></span>
         );
     }
     return (
@@ -33,17 +34,24 @@ const Home = () => {
         <div>
           <div className="flex flex-wrap items-center gap-5">
             {categroyes?.map((category) => (
-              <NavLink  to={`/jobs/${category.category_name}`} className="bg-[#7B61FF] active:text-red-600 px-5 py-2 rounded-full text-white category" key={category._id}>
+              <NavLink
+                to={`/jobs/${category.category_name}`}
+                className="bg-[#7B61FF] active:text-red-600 px-5 py-2 rounded-full text-white category"
+                key={category._id}
+              >
                 {category.category_name}
               </NavLink>
             ))}
           </div>
-          <div>
+          <div className="relative">
             <Outlet></Outlet>
           </div>
         </div>
-        <Contact></Contact>
-        <Footer></Footer>
+        <div>
+          <Feature></Feature>
+          <Contact></Contact>
+          <Footer></Footer>
+        </div>
       </div>
     );
 };

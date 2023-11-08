@@ -5,6 +5,8 @@ import { VscCheckAll } from "react-icons/vsc";
 import { BsBookmarkX } from "react-icons/bs";
 import Swal from "sweetalert2";
 const MyBids = () => {
+  const [isShort, setIsshort] = useState(true);
+    const [isState,setIsState] = useState('')
     const [mybids,setMybids] = useState(null);
     const {user} = useContext(AuthContext)
     useEffect(() => {
@@ -13,11 +15,6 @@ const MyBids = () => {
     },[user])
 
 
-    if(!mybids){
-        return (
-          <span className="loading loading-lg absolute top-1/2 left-1/2 loading-spinner text-gray-700"></span>
-        );
-    }
 
     const handleBidDelete = (_id) => {
         Swal.fire({
@@ -48,16 +45,41 @@ const MyBids = () => {
           }
         });
     }
+
     
+    
+    const haddleShort = () => {
+      setMybids(null)
+      if(!isShort){
+        window.location.reload(false);
+      }
+      setIsshort(!isShort);
+
+      axios
+        .get(
+          `http://localhost:5000/sortingdata?accepted=accepted&pending=pending&emailid=${user?.email}`
+        )
+        .then((result) => {
+          setMybids(result.data);
+          if(result.data){
+            setIsState('Default')
+          }
+        });
+    }
+
+    
+    if (!mybids) {
+      return (
+        <span className="loading loading-lg absolute top-1/2 left-1/2 loading-spinner text-gray-700"></span>
+      );
+    }
 
     return (
       <div>
         <div className="relative overflow-x-auto py-14">
           <div className={mybids?.length > 0 ? "" : "mt-40"}>
             <h1 className="text-center text-4xl pb-10">
-              {mybids?.length > 0
-                ? "My bids"
-                : "No bids avalable"}
+              {mybids?.length > 0 ? "My bids" : "No bids avalable"}
             </h1>
             {!mybids.length > 0 ? (
               <img
@@ -71,6 +93,14 @@ const MyBids = () => {
           </div>
 
           <div className={mybids?.length > 0 ? "block" : "hidden"}>
+            <button
+              className={`${
+                isState ? "bg-[#F43F5E]" : "bg-green-500"
+              } text-white px-3 py-2 rounded-md my-5`}
+              onClick={haddleShort}
+            >
+              {isState ? "Cancel Sorting" : "Click Sorting Your bid"}
+            </button>
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -107,7 +137,6 @@ const MyBids = () => {
                     status,
                     job_title,
                     category,
-                    
                   } = bids || {};
                   return (
                     <tr
@@ -161,7 +190,12 @@ const MyBids = () => {
                         </td>
                       )}
                       <td className="text-center">
-                        <button onClick={() => handleBidDelete(_id)} className="bg-[#F43F5E] text-white rounded-md px-3 py-1">delete</button>
+                        <button
+                          onClick={() => handleBidDelete(_id)}
+                          className="bg-[#F43F5E] text-white rounded-md px-3 py-1"
+                        >
+                          delete
+                        </button>
                       </td>
                     </tr>
                   );
