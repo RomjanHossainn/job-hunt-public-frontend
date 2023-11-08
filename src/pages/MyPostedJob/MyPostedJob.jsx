@@ -14,7 +14,7 @@ const MyPostedJob = () => {
         axios.get(`https://jobhut-backend.vercel.app/mypostedjob?email=${user?.email}`)
         .then(result => setMyPostedJob(result.data))
         
-    },[user])
+    },[user?.email])
 
     const handleDelete = (_id) => {
       Swal.fire({
