@@ -4,11 +4,13 @@ import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import { VscCheckAll } from "react-icons/vsc";
 import { BsBookmarkX } from "react-icons/bs";
 import Swal from "sweetalert2";
+import Navigation from "../../components/Navigation/Navigation";
+import Footer from "../../components/Footer/Footer";
 const MyBids = () => {
   const [isShort, setIsshort] = useState(true);
     const [isState,setIsState] = useState('')
     const [mybids,setMybids] = useState(null);
-    const {user} = useContext(AuthContext)
+    const {user,loading} = useContext(AuthContext)
     useEffect(() => {
         axios.get(`http://localhost:5000/yourbidsjobs?email=${user?.email}`)
         .then(result => setMybids(result.data))
@@ -76,12 +78,13 @@ const MyBids = () => {
 
     return (
       <div>
-        <div className="relative overflow-x-auto py-14">
+        <Navigation></Navigation>
+        <div className="relative overflow-x-auto py-8">
           <div className={mybids?.length > 0 ? "" : "mt-40"}>
-            <h1 className="text-center text-4xl pb-10">
+            <h1 className="text-center text-4xl pb-5">
               {mybids?.length > 0 ? "My bids" : "No bids avalable"}
             </h1>
-            {!mybids.length > 0 ? (
+            {!mybids?.length > 0 ? (
               <img
                 className="max-w-[200px] mx-auto"
                 src="https://cdn3.vectorstock.com/i/1000x1000/00/07/not-available-flat-icon-vector-12770007.jpg"
@@ -204,6 +207,7 @@ const MyBids = () => {
             </table>
           </div>
         </div>
+        <Footer></Footer>
       </div>
     );
 };

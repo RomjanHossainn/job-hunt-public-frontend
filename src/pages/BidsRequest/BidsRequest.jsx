@@ -2,6 +2,8 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import Navigation from "../../components/Navigation/Navigation";
+import Footer from "../../components/Footer/Footer";
 
 const BidsRequest = () => {
     const [mybidsreq, setMybidreq] = useState(null);
@@ -64,6 +66,7 @@ const BidsRequest = () => {
 
     return (
       <div>
+        <Navigation></Navigation>
         <div className="relative overflow-x-auto py-14">
           <div className={mybidsreq?.length > 0 ? "" : "mt-40"}>
             <h1 className="text-center text-4xl pb-10">
@@ -167,6 +170,7 @@ const BidsRequest = () => {
             </table>
           </div>
         </div>
+        <Footer></Footer>
       </div>
     );
 };
