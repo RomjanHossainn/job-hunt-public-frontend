@@ -14,6 +14,7 @@ const Footer = () => {
               </div>
             </a>
           </div>
+          
           <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
             <div className="space-y-3">
               <h3 className="tracki uppercase dark:text-gray-50">All Jobs</h3>

@@ -5,6 +5,7 @@ import axios from "axios";
 import {NavLink, Outlet } from "react-router-dom";
 import Banner from "../../components/Banner/Banner";
 import Footer from "../../components/Footer/Footer";
+import Contact from "../../components/Contact/Contact";
 const Home = () => {
     const {loading} = useContext(AuthContext)
     const [categroyes,setCategoryes] = useState(null)
@@ -41,6 +42,7 @@ const Home = () => {
             <Outlet></Outlet>
           </div>
         </div>
+        <Contact></Contact>
         <Footer></Footer>
       </div>
     );
