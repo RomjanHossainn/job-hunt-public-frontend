@@ -9,7 +9,7 @@ const Jobs = () => {
 
     useEffect(() => {
         setJobs(null)
-        axios.get(`http://localhost:5000/categoryesitem?name=${category_name}`)
+        axios.get(`https://jobhut-backend.vercel.app/categoryesitem?name=${category_name}`)
         .then(result => setJobs(result.data))
     },[category_name])
     

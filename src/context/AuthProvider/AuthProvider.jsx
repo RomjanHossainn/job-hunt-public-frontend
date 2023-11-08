@@ -40,7 +40,7 @@ const AuthProvider = ({children}) => {
     },[])
 
 
-    console.log(user)
+   
 
     const provideInfo = {
         user,
@@ -56,5 +56,7 @@ const AuthProvider = ({children}) => {
         </AuthContext.Provider>
     );
 };
+
+
 
 export default AuthProvider;

@@ -13,7 +13,7 @@ const BidsRequest = () => {
     
     useEffect(() => {
       axios
-        .get(`http://localhost:5000/buyeremailjobs?email=${user?.email}`)
+        .get(`https://jobhut-backend.vercel.app/buyeremailjobs?email=${user?.email}`)
         .then((result) => setMybidreq(result.data));
     }, [user?.email]);
 
@@ -26,7 +26,7 @@ const BidsRequest = () => {
     const handleAccepet = (_id) => {
         
         axios
-          .patch(`http://localhost:5000/bidstatus?id=${_id}`, {
+          .patch(`https://jobhut-backend.vercel.app/bidstatus?id=${_id}`, {
             newstatus: "accepted",
           })
           .then((result) => {
@@ -54,7 +54,7 @@ const BidsRequest = () => {
 
     const handleReject = (_id) => {
         axios
-          .patch(`http://localhost:5000/bidstatus?id=${_id}`, {
+          .patch(`https://jobhut-backend.vercel.app/bidstatus?id=${_id}`, {
             newstatus: "Rejected",
           })
           .then((result) => {
@@ -125,7 +125,7 @@ const BidsRequest = () => {
                     job_title,
                     category,
                   } = bids || {};
-                  console.log(status);
+                  
                   return (
                     <tr
                       key={bids._id}

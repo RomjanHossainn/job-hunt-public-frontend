@@ -13,7 +13,7 @@ const JobDetails = () => {
     const [job,setJob] = useState(null)
     const {user} = useContext(AuthContext)
     useEffect(() => {
-        axios.get(`http://localhost:5000/job?id=${id}`)
+        axios.get(`https://jobhut-backend.vercel.app/job?id=${id}`)
         .then(result => setJob(result.data))
     },[id])
 
@@ -60,7 +60,7 @@ const JobDetails = () => {
         location
       }
 
-      axios.post("http://localhost:5000/postbidsjob",bidsData)
+      axios.post("https://jobhut-backend.vercel.app/postbidsjob",bidsData)
       .then(result => {
         if(result.data.insertedId){
           const Toast = Swal.mixin({

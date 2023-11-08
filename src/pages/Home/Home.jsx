@@ -13,14 +13,14 @@ const Home = () => {
     const [categroyes,setCategoryes] = useState(null)
     
     useEffect(() => {
-        axios.get("http://localhost:5000/categoryes")
+        axios.get("https://jobhut-backend.vercel.app/categoryes")
         .then(result => {
             setCategoryes(result.data)
         })
     },[])
 
 
-   
+  
 
 
     if(loading && !categroyes){

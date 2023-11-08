@@ -9,7 +9,7 @@ const JobUpdate = () => {
     console.log(id)
     const [previusJob,setPreviusJob] = useState(null)
     useEffect(() => {
-        axios.get(`http://localhost:5000/job?id=${id}`)
+        axios.get(`https://jobhut-backend.vercel.app/job?id=${id}`)
         .then(result => setPreviusJob(result.data))
     },[id])
 
@@ -50,7 +50,7 @@ const JobUpdate = () => {
         description,
       };
 
-      axios.put(`http://localhost:5000/updatejob?id=${id}`,updateJob)
+      axios.put(`https://jobhut-backend.vercel.app/updatejob?id=${id}`,updateJob)
       .then(result => {
         if(result.data.modifiedCount > 0){
           const Toast = Swal.mixin({

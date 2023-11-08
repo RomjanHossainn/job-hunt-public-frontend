@@ -13,7 +13,7 @@ const MyBids = () => {
     const [mybids,setMybids] = useState(null);
     const {user,loading} = useContext(AuthContext)
     useEffect(() => {
-        axios.get(`http://localhost:5000/yourbidsjobs?email=${user?.email}`)
+        axios.get(`https://jobhut-backend.vercel.app/yourbidsjobs?email=${user?.email}`)
         .then(result => setMybids(result.data))
     },[user])
 
@@ -31,7 +31,7 @@ const MyBids = () => {
         }).then((result) => {
           if (result.isConfirmed) {
             axios
-              .delete(`http://localhost:5000/deletemybid?id=${_id}`)
+              .delete(`https://jobhut-backend.vercel.app/deletemybid?id=${_id}`)
               .then((result) => {
                 if (result.data.deletedCount > 0) {
                     Swal.fire({
@@ -60,7 +60,7 @@ const MyBids = () => {
 
       axios
         .get(
-          `http://localhost:5000/sortingdata?accepted=accepted&pending=pending&emailid=${user?.email}`
+          `https://jobhut-backend.vercel.app/sortingdata?accepted=accepted&pending=pending&emailid=${user?.email}`
         )
         .then((result) => {
           setMybids(result.data);

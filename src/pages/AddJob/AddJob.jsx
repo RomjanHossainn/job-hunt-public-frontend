@@ -37,7 +37,7 @@ const AddJob = () => {
             description
         }
 
-        axios.post("http://localhost:5000/jobpost",addJob)
+        axios.post("https://jobhut-backend.vercel.app/jobpost",addJob)
         .then(result => {
             if(result.data.insertedId){
                 const Toast = Swal.mixin({

@@ -11,7 +11,7 @@ const MyPostedJob = () => {
     const [mypostedjob,setMyPostedJob] = useState(null);
     
     useEffect(() =>{
-        axios.get(`http://localhost:5000/mypostedjob?email=${user?.email}`)
+        axios.get(`https://jobhut-backend.vercel.app/mypostedjob?email=${user?.email}`)
         .then(result => setMyPostedJob(result.data))
         
     },[user])
@@ -27,7 +27,7 @@ const MyPostedJob = () => {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.delete(`http://localhost:5000/jobdelete?id=${_id}`)
+          axios.delete(`https://jobhut-backend.vercel.app/jobdelete?id=${_id}`)
           .then(result => {
             if(result.data.deletedCount > 0){
               const filterDelete = mypostedjob.filter(job => job._id !== _id)

@@ -6,7 +6,7 @@ const AllJobs = () => {
     const [jobs, setJobs] = useState(null);
      useEffect(() => {
        axios
-         .get("http://localhost:5000/alljobs")
+         .get("https://jobhut-backend.vercel.app/alljobs")
          .then((result) => setJobs(result.data));
      }, []);
 
