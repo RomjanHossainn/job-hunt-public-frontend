@@ -8,6 +8,7 @@ import Footer from "../../components/Footer/Footer";
 import Contact from "../../components/Contact/Contact";
 import Feature from "../../components/Feature/Feature";
 const Home = () => {
+  document.title = 'Home Page';
     const {loading} = useContext(AuthContext)
     const [categroyes,setCategoryes] = useState(null)
     

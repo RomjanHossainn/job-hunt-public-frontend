@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
 const MyBids = () => {
+  document.title = 'My Bids';
   const [isShort, setIsshort] = useState(true);
     const [isState,setIsState] = useState('')
     const [mybids,setMybids] = useState(null);

@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import Navigation from "../../../components/Navigation/Navigation";
 import Footer from "../../../components/Footer/Footer";
 const JobDetails = () => {
-  
+    document.title = 'job deatils'
     const navigateMybids = useNavigate()
     
     const {id} = useParams();

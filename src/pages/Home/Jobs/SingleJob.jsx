@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 
 const SingleJob = ({job}) => {
     // console.log(job)
-    const {job_title,jobType,location,dead_line,category,max_salary,min_salary,_id,email,description
+    const {job_title,jobType,location,dead_line,category,max_salary,min_salary,_id,description
 } = job || {}
     return (
       <div className="rounded-md w-full bg-white px-4 py-4 shadow-md transition transform duration-500 cursor-pointer">
         <div className="flex flex-col justify-start">
-          <div className="flex justify-between items-center w-96">
+          <div className="flex justify-between items-center ">
             <div className="text-lg font-semibold text-bookmark-blue flex space-x-1 items-center mb-2">
               <svg
                 className="w-7 h-7 text-gray-700"

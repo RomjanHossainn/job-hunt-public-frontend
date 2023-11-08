@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Navigation from "../../components/Navigation/Navigation";
 const AddJob = () => {
+
+  document.title = 'Add Jobs'
     
     const {user} = useContext(AuthContext)
     const navigate = useNavigate()

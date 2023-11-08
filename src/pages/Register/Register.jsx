@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
 const Register = () => {
+  document.title = 'Register page';
     const navigateHome = useNavigate()
     const {createUser} = useContext(AuthContext)
 

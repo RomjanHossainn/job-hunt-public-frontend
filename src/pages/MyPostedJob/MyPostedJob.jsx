@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
 const MyPostedJob = () => {
+  document.title = 'My Posted Jobs';
     const {user} = useContext(AuthContext);
     const [mypostedjob,setMyPostedJob] = useState(null);
     

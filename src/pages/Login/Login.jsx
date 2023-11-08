@@ -3,10 +3,11 @@ import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Navigation from "../../components/Navigation/Navigation";
-
+import axios from "axios";
 const Login = () => {
     const location = useLocation();
-    // console.log(location)
+    document.title = 'Login Page';
+    
     const navigatepath = useNavigate();
     const [alertMessage, setAlertMessage] = useState("");
     const {signInUser} = useContext(AuthContext)
@@ -24,6 +25,8 @@ const Login = () => {
         }
 
 
+
+        
         signInUser(email,password)
         .then(result => {
                 if(result.user){
@@ -46,7 +49,15 @@ const Login = () => {
                   });
                 }
                 form.reset()
-                navigatepath(location.state ? location.state : '/')
+                
+                axios.post(`http://localhost:5000/jwt`,{email:result.user.email}, {withCredentials : true})
+
+                .then(result => {
+                  if(result.data.success){
+                    navigatepath(location.state ? location.state : '/')
+                  } 
+                  
+                })
                 
         })
         .catch(erorr => {

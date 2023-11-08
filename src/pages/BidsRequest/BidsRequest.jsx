@@ -6,6 +6,7 @@ import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
 
 const BidsRequest = () => {
+  document.title = 'Bids Request';
     const [mybidsreq, setMybidreq] = useState(null);
     
     const { user } = useContext(AuthContext);
@@ -46,6 +47,10 @@ const BidsRequest = () => {
             }
           });
     }
+
+
+    
+    
 
     const handleReject = (_id) => {
         axios
