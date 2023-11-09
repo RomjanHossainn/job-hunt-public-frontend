@@ -11,10 +11,16 @@ const MyBids = () => {
   const [isShort, setIsshort] = useState(true);
     const [isState,setIsState] = useState('')
     const [mybids,setMybids] = useState(null);
-    const {user,loading} = useContext(AuthContext)
+    const {user} = useContext(AuthContext)
     useEffect(() => {
-        axios.get(`https://jobhut-backend.vercel.app/yourbidsjobs?email=${user?.email}`)
-        .then(result => setMybids(result.data))
+        const getMybids = async() => {
+         await axios
+            .get(
+              `https://jobhut-backend.vercel.app/yourbidsjobs?email=${user?.email}`
+            )
+            .then((result) => setMybids(result.data));
+        }
+        getMybids()
     },[user])
 
 

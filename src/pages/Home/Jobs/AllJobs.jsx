@@ -5,9 +5,12 @@ import SingleJob from "./SingleJob";
 const AllJobs = () => {
     const [jobs, setJobs] = useState(null);
      useEffect(() => {
-       axios
-         .get("https://jobhut-backend.vercel.app/alljobs")
-         .then((result) => setJobs(result.data));
+       const getjobs = async() => {
+       await axios
+          .get("https://jobhut-backend.vercel.app/alljobs")
+          .then((result) => setJobs(result.data));
+       }
+       getjobs()
      }, []);
 
      if(!jobs){

@@ -13,8 +13,15 @@ const MyPostedJob = () => {
     
     
     useEffect(() =>{
-        axios.get(`https://jobhut-backend.vercel.app/mypostedjob?email=${user?.email}`)
-        .then(result => setMyPostedJob(result.data))
+      const getMypostedJobs = async () => {
+         await axios
+           .get(
+             `https://jobhut-backend.vercel.app/mypostedjob?email=${user?.email}`
+           )
+           .then((result) => setMyPostedJob(result.data));
+      }
+
+      getMypostedJobs()
         
     },[user?.email])
 

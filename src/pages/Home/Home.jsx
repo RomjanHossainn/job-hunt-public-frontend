@@ -13,11 +13,17 @@ const Home = () => {
     const [categroyes,setCategoryes] = useState(null)
     
     useEffect(() => {
-        axios.get("https://jobhut-backend.vercel.app/categoryes")
-        .then(result => {
-            setCategoryes(result.data)
-        })
+        const getCategoryes = async() => {
+         await axios
+            .get("https://jobhut-backend.vercel.app/categoryes")
+            .then((result) => {
+              setCategoryes(result.data);
+            });
+        }
+        getCategoryes();
     },[])
+
+    
 
 
   

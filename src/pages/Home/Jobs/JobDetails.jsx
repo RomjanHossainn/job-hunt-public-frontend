@@ -13,8 +13,12 @@ const JobDetails = () => {
     const [job,setJob] = useState(null)
     const {user} = useContext(AuthContext)
     useEffect(() => {
-        axios.get(`https://jobhut-backend.vercel.app/job?id=${id}`)
-        .then(result => setJob(result.data))
+        const getJob = async() => {
+         await axios
+            .get(`https://jobhut-backend.vercel.app/job?id=${id}`)
+            .then((result) => setJob(result.data));
+        }
+        getJob()
     },[id])
 
 

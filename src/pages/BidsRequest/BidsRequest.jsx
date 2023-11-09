@@ -12,9 +12,14 @@ const BidsRequest = () => {
     const { user } = useContext(AuthContext);
     
     useEffect(() => {
-      axios
-        .get(`https://jobhut-backend.vercel.app/buyeremailjobs?email=${user?.email}`)
-        .then((result) => setMybidreq(result.data));
+      const getMyBidsReq = async() => {
+       await axios
+          .get(
+            `https://jobhut-backend.vercel.app/buyeremailjobs?email=${user?.email}`
+          )
+          .then((result) => setMybidreq(result.data));
+      }
+      getMyBidsReq()
     }, [user?.email]);
 
     if (!mybidsreq) {
