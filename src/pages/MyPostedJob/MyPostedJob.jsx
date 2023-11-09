@@ -9,6 +9,8 @@ const MyPostedJob = () => {
   document.title = 'My Posted Jobs';
     const {user} = useContext(AuthContext);
     const [mypostedjob,setMyPostedJob] = useState(null);
+
+    
     
     useEffect(() =>{
         axios.get(`https://jobhut-backend.vercel.app/mypostedjob?email=${user?.email}`)

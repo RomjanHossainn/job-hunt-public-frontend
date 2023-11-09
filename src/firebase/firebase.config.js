@@ -3,14 +3,15 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getAuth } from "firebase/auth";
+// require("dotenv").config();
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB7FS6yDuiUaZdUtyDXYwRHaVEyKJvzL1w",
-  authDomain: "job-hunt-application.firebaseapp.com",
-  projectId: "job-hunt-application",
-  storageBucket: "job-hunt-application.appspot.com",
-  messagingSenderId: "1043801711247",
-  appId: "1:1043801711247:web:e1a633cc3f95ab1a3046fa",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase

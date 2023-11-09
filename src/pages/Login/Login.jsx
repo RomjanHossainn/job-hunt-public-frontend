@@ -50,7 +50,7 @@ const Login = () => {
                 }
                 form.reset()
                 
-                axios.post(`https://jobhut-backend.vercel.app/jwt`,{email:result.user.email}, {withCredentials : true})
+                axios.post(`https://jobhut-backend.vercel.app/jwt`,{email:result.user.email})
 
                 .then(result => {
                   if(result.data.success){
